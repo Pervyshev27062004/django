@@ -22,7 +22,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -34,10 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'products',
     'profiles',
-
-
+    'products',
 ]
 
 MIDDLEWARE = [
@@ -152,9 +150,6 @@ LOGGING = {
        }
    }
 }
-MY_CUSTOM_VARIABLE = "Hello World"
-MY_ENV_VARIABLE = "Smth about logger"
 
-FOR_HOMEWORK1 = "For homework 1"
-FOR_HOMEWORK2 = "For homework 2"
-FOR_HOMEWORK3 = "For homework 3"
+MY_CUSTOM_VARIABLE = "Hello world!"
+MY_ENV_VARIABLE = os.getenv("MY_ENV_VARIABLE", None)

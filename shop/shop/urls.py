@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path
 
 from products.views import index
+from products.views import index1
+from products.views import index2
+from products.views import index3
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name="index"),
+    path('', index3, name="index"),
 ]
