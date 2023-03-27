@@ -2,9 +2,14 @@ import logging
 
 from django.conf import settings
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
+
+from products.models import Product, Purchase
+from products.forms import ProductsForm
+
+from django.contrib.auth.models import User
 
 logger = logging.getLogger(__name__)
-from products.models import Product, Purchase
 
 
 def index(request):
@@ -46,5 +51,43 @@ def index3(request):
 
     string = "<br>".join([str(p) for p in products])
     return HttpResponse(string)
+
+
+def product(request):
+    if request.method == "POST":
+        form = ProductsForm(request.POST)
+        if form.is_valid():
+            Product.objects.create(
+                title=form.cleaned_data['title'],
+                price=form.cleaned_data['price'],
+                color=form.cleaned_data['color'],
+                excerpt=form.cleaned_data['excerpt'],
+                description=form.cleaned_data['description'],
+            )
+            # Process validated data
+            # form.cleaned_data["email"]
+            logger.info(f"Create product: {form.cleaned_data['title']}")
+            # form.cleaned_data["password"]
+            logger.info(f"Product price: {form.cleaned_data['price']}")
+
+            return redirect("/")
+    else:
+        form = ProductsForm()
+
+    return render(request, "product.html", {"form": form})
+
+
+def index4(request):
+    products = Product.objects.all()
+
+    title = request.GET.get("title")
+    if title is not None:
+        products = products.filter(title__icontains=title)
+
+    purchases__count = request.GET.get("purchases__count")
+    if purchases__count is not None:
+        products = products.filter(purchases__count=purchases__count)
+
+    return render(request, "index.html", {"products": products})
 
 
