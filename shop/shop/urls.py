@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from products.views import index
 from products.views import index1
@@ -28,6 +28,8 @@ from products.views import product
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("api/", include("api.urls", namespace="api")),
+    path("api/auth/", include("rest_framework.urls", namespace="rest_framework")),
     path('', index3, name="index"),
     path('register/', register, name="register"),
     path('product/', index4, name="product"),
