@@ -4,6 +4,20 @@ from products.models import Product
 
 
 class ProductModelSerializer(serializers.HyperlinkedModelSerializer):
+    has_image = serializers.SerializerMethodField()
+    purchases_count = serializers.IntegerField()
+    purchases_total = serializers.IntegerField()
+
+    def get_has_image(self, obj: Product) -> bool:
+        return bool(obj.image)
+
+    def get_purchases_count(self, obj: Product) -> int:
+        return obj.purchases.count()
+
+    def get_purchases_total(self, obj: Product) -> int:
+        return 0
+
     class Meta:
         model = Product
-        fields = ["id", "title", "image", "color", "price", "created_at", "description"]
+        fields = ["id", "title", "has_image", "purchases_count", "purchases_total", "image", "color", "price",
+                  "created_at", "description"]
