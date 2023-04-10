@@ -11,7 +11,7 @@ from api.users.serializers import RegisterSerializer, LoginSerializer
 class RegisterView(CreateAPIView):
     serializer_class = RegisterSerializer
 
-    def create(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = User(
