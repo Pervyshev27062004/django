@@ -7,4 +7,3 @@ class ProductsForm(forms.Form):
     color = forms.CharField(max_length=32, required=False)
     excerpt = forms.CharField()
     description = forms.CharField()
-

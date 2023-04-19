@@ -21,6 +21,8 @@ from products.views import index1
 from products.views import index2
 from products.views import index3
 from products.views import index4
+from products.views import index5
+
 
 from profiles.views import register, login_view, logout_view
 from products.views import product
@@ -30,7 +32,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/", include("api.urls", namespace="api")),
     path("api/auth/", include("rest_framework.urls", namespace="rest_framework")),
-    path('', index3, name="index"),
+    path('', index5, name="index5"),
     path('register/', register, name="register"),
     path('product/', index4, name="product"),
     path('login_view/', login_view, name="login_view"),
