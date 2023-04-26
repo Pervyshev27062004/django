@@ -15,8 +15,8 @@ class AddressAdminInline(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("title", "price", "description", "color", "created_at")
-    fields = ("title", "image", "price", "description", "created_at")
+    list_display = ("title", "price", "price_eur", "description", "color", "created_at")
+    fields = ("title", "image", "price", "price_eur", "description", "created_at")
     readonly_fields = ("created_at",)
     search_fields = ("title", "description")
     inlines = [PurchaseAdminInline]
