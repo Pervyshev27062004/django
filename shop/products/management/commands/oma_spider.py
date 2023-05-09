@@ -9,13 +9,10 @@ from products.spiders import OmaSpider
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from products.models import Product
-import os
 
 
 @job
 def run_spider():
-    os.rmdir(settings.MEDIA_ROOT / "products")
-    os.mkdir(settings.MEDIA_ROOT / "products")
     Product.objects.all().delete()
 
     def crawler_results(signal, sender, item, response, spider):
