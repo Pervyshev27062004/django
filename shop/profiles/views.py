@@ -38,7 +38,7 @@ def login_view(request):
             if user is None:
                 return HttpResponse('BadRequest', status=400)
             login(request, user)
-            return redirect("index")
+            return redirect("index5")
     else:
         form = LoginForm()
     return render(request, "login.html", {"form": form})
