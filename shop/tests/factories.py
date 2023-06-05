@@ -1,10 +1,8 @@
-import factory
-
 from decimal import Decimal
 
-from products.models import Product
-
+import factory
 from factory.django import DjangoModelFactory
+from products.models import Product
 
 
 class ProductFactory(DjangoModelFactory):
@@ -14,4 +12,4 @@ class ProductFactory(DjangoModelFactory):
     title = factory.Faker("word")
     color = "RED"
     price = Decimal(100)
-    price_eur = Decimal(290)
+    price_usd = Decimal(290)
