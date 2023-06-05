@@ -14,15 +14,14 @@ from products.views import product
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("api/", include("api.urls", namespace="api")),
     path("api/auth/", include("rest_framework.urls", namespace="rest_framework")),
-    path('', index5, name="index5"),
-    path('register/', register, name="register"),
-    path('product/', index4, name="product"),
-    path('login_view/', login_view, name="login_view"),
-    path('logout_view/', logout_view, name="logout_view")
-
+    path("", index5, name="index5"),
+    path("register/", register, name="register"),
+    path("product/", index4, name="product"),
+    path("login_view/", login_view, name="login_view"),
+    path("logout_view/", logout_view, name="logout_view"),
 ]
 
 if settings.DEBUG:

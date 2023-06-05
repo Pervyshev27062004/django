@@ -36,7 +36,7 @@ def login_view(request):
                 password=form.cleaned_data["password"],
             )
             if user is None:
-                return HttpResponse('BadRequest', status=400)
+                return HttpResponse("BadRequest", status=400)
             login(request, user)
             return redirect("index5")
     else:

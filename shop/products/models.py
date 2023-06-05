@@ -17,12 +17,12 @@ class Product(models.Model):
     image = models.ImageField(upload_to="products/", blank=True, null=True)
     color = models.CharField(max_length=32, choices=COLOR_CHOICES, default="RED")
     price = models.DecimalField(default=Decimal("0"), decimal_places=5, max_digits=10)
-    price_eur = models.DecimalField(default=Decimal("0"), decimal_places=5, max_digits=10)
+    price_eur = models.DecimalField(
+        default=Decimal("0"), decimal_places=5, max_digits=10
+    )
     excerpt = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(
-        auto_now_add=True, db_index=True
-    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):
         return f"Product: {self.title} - {self.price} "
@@ -51,6 +51,4 @@ class Address(models.Model):
     city = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
 
-    created_at = models.DateTimeField(
-        auto_now_add=True, db_index=True
-    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)

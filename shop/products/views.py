@@ -5,10 +5,9 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.core.cache import cache
 
-from products.models import Product, Purchase
+from products.models import Product
 from products.forms import ProductsForm
 
-from django.contrib.auth.models import User
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +54,9 @@ def index1(request):
 
 
 def index2(request):
-    products = Product.objects.filter(purchases__user__email="kingtiger27062004@gmail.com")
+    products = Product.objects.filter(
+        purchases__user__email="kingtiger27062004@gmail.com"
+    )
     string = "<br>".join([str(p) for p in products])
     return HttpResponse(string)
 
@@ -80,11 +81,11 @@ def product(request):
         form = ProductsForm(request.POST)
         if form.is_valid():
             Product.objects.create(
-                title=form.cleaned_data['title'],
-                price=form.cleaned_data['price'],
-                color=form.cleaned_data['color'],
-                excerpt=form.cleaned_data['excerpt'],
-                description=form.cleaned_data['description'],
+                title=form.cleaned_data["title"],
+                price=form.cleaned_data["price"],
+                color=form.cleaned_data["color"],
+                excerpt=form.cleaned_data["excerpt"],
+                description=form.cleaned_data["description"],
             )
             # Process validated data
             # form.cleaned_data["email"]

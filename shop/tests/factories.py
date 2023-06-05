@@ -15,4 +15,3 @@ class ProductFactory(DjangoModelFactory):
     color = "RED"
     price = Decimal(100)
     price_eur = Decimal(290)
-
